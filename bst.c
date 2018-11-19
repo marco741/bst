@@ -73,9 +73,9 @@ TBst bst_remove(TBst b, TInfo info) {
         return b;
     }
     if (is_greater(info, b->info))
-        return bst_remove(b->right);
+        return bst_remove(b->right,info);
     if (is_greater(b->info, info))
-        return bst_remove(b->left);
+        return bst_remove(b->left,info);
 }
 
 /*
