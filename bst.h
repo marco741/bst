@@ -28,7 +28,7 @@ typedef struct SNodeBst TNodeBst;
 typedef struct SNodeBst* TBst;
 
 bool is_greater(int a, int b);
-void print_info(TInfo info);
+void info_print(TInfo info);
 TNodeBst* bst_node_create(TInfo info);
 void bst_node_destroy(TNodeBst* node);
 TBst bst_insert(TBst b, TInfo info);

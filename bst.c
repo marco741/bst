@@ -13,7 +13,7 @@ bool is_greater(int a, int b) {
     return a>b;
 }
 
-void print_info(TInfo info) {
+void info_print(TInfo info) {
     printf("%d ", info);
 }
 
