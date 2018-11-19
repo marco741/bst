@@ -184,29 +184,27 @@ bool is_bst(TBst tree) {
 
 }
 
-void bst_visit2d(TBst b) {
-    //funzione di appoggio
-    bst_visit2d_util(b, 0);
+void bst_visit2d(TBst b){
+    //Funzione d'appoggio per chiamare una funzione con un parametro in più
+    bst_visit2d_util(b,1);
 }
 
-void bst_visit2d_util(TBst b, int space) {
-    // Funzione per stampare un bst in due dimensioni
+void bst_visit2d_util(TBst b,int level) {
+    //Funzione per stampare un bst in due dimensioni
+    //In pratica è la copia di bst_visit_contr, ma con due parametri
+    if (b != NULL) {
+        //Processo prima il figlio destro in modo da stampare il tutto in verticale, da sinistra verso destra
+        bst_visit2d_util(b->right,level+1);
+        info_print2d(b->info,level);
+        bst_visit2d_util(b->left,level+1);
+    }
+}
 
-    if (b == NULL)
-        return;
-
-    // Aumenta la distanza tra i livelli
-    space += COUNT;
-
-    // Processa prima il figlio destro
-    bst_visit2d_util(b->right, space);
-
-    // Stampa il nodo corrente
+void info_print2d(TInfo info, int level){
+    //Stampa il nodo corrente a distanza level*COUNT dal bordo sinistro
+    //dopo e prima di una riga vuota.
     puts("");
-    for (int i = COUNT; i < space; i++)
+    for (int i = COUNT; i < level*COUNT; i++)//ATTENZIONE vedi costante COUNT nell'header. Predefinito 10.
         printf(" ");
-    printf("%d\n", b->info);
-
-    // Processa il figlio sinistro
-    bst_visit2d_util(b->left, space);
+    printf("%4d\n", info);
 } 
