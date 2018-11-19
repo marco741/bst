@@ -73,9 +73,9 @@ TBst bst_remove(TBst b, TInfo info) {
         return b;
     }
     if (is_greater(info, b->info))
-        return bst_remove(b->right,info);
+        return bst_remove(b->right, info);
     if (is_greater(b->info, info))
-        return bst_remove(b->left,info);
+        return bst_remove(b->left, info);
 }
 
 /*
@@ -91,17 +91,23 @@ TBst bst_remove(TBst b, TInfo info) {
                 TNodeBst
             }
 }
-*/
+ */
 TNodeBst* bst_search_max(TBst b) {
     if (b == NULL || b->right == NULL)
         return b;
     return bst_search_max(b->right);
 }
 
+TNodeBst* bst_search_min(TBst b) {
+    if (b == NULL || b->left == NULL)
+        return b;
+    return bst_search_min(b->left);
+}
+
 void bst_visit(TBst b) {
     if (b != NULL) {
         bst_visit(b->left);
-        print_info(b->info);
+        info_print(b->info);
         bst_visit(b->right);
     }
 }
@@ -109,7 +115,7 @@ void bst_visit(TBst b) {
 void bst_visit_contr(TBst b) {
     if (b != NULL) {
         bst_visit_contr(b->right);
-        print_info(b->info);
+        info_print(b->info);
         bst_visit_contr(b->left);
     }
 }
@@ -144,3 +150,47 @@ int conta_nodi_non_foglie(TBst b) {
         return 1 + conta_nodi_non_foglie(b->left) + conta_nodi_non_foglie(b->right);
 }
 
+int bst_numOddOdd(TBst tree) {
+    //Conta i nodi di valore dispari e valore dispari
+    if (NULL == tree)
+        return 0;
+    int count = 0;
+    if (tree->left != NULL) {
+        if (tree->left->info % 2)
+            count++;
+        count += bst_numOddOdd(tree->left->left) + bst_numOddOdd(tree->left->right);
+    }
+    if (tree->right != NULL) {
+        if (tree->right->info % 2)
+            count++;
+        count += bst_numOddOdd(tree->right->left) + bst_numOddOdd(tree->right->right);
+    }
+
+    return count;
+}
+
+bool is_bst(TBst tree) {
+    //Dato un albero verificare se è un bst
+    bool check = true;
+    if (tree == NULL || (tree->left == NULL && tree->right == NULL))
+        return true;
+    if (tree->left != NULL)
+        if (is_greater(tree->left->info, tree->info)||is_greater(bst_search_max(tree->left)->info, tree->info))
+            check = false;
+    if (tree->right != NULL)
+        if (!is_greater(tree->right->info, tree->info)||!is_greater(bst_search_min(tree->right)->info, tree->info))
+            check=false;
+    return check && is_bst(tree->left) && is_bst(tree->right);
+
+
+
+    /*
+    if (tree->left != NULL||!is_greater(tree->left->info, tree->info))
+        if (tree->right != NULL&&!is_greater(tree->info, tree->right->info))
+            if (!is_greater(bst_search_max(tree->left)->info, tree->info) && !is_greater(tree->info, bst_search_min(tree->right)->info))
+                return is_bst(tree->left) && is_bst(tree->right);*/
+
+
+
+
+}

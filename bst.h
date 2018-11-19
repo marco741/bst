@@ -34,12 +34,15 @@ void bst_node_destroy(TNodeBst* node);
 TBst bst_insert(TBst b, TInfo info);
 TBst bst_remove(TBst b, TInfo info);
 TNodeBst* bst_search_max(TBst b);
+TNodeBst* bst_search_min(TBst b);
 void bst_visit(TBst b);
 void bst_visit_contr(TBst b);
 int conta_nodi(TBst b);
 int somma_valori(TBst b);
 int conta_foglie(TBst b);
 int conta_nodi_non_foglie(TBst b);
+int bst_numOddOdd(TBst tree);
+bool is_bst(TBst tree);
 
 #endif /* BST_H */
 
