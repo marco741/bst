@@ -78,6 +78,7 @@ TBst bst_remove(TBst b, TInfo info) {
         return bst_remove(b->left);
 }
 
+/*
 TBst bst_remove(TBst b, TInfo info) {
     if (b == NULL)
         return b;
@@ -90,7 +91,7 @@ TBst bst_remove(TBst b, TInfo info) {
                 TNodeBst
             }
 }
-
+*/
 TNodeBst* bst_search_max(TBst b) {
     if (b == NULL || b->right == NULL)
         return b;
