@@ -175,22 +175,38 @@ bool is_bst(TBst tree) {
     if (tree == NULL || (tree->left == NULL && tree->right == NULL))
         return true;
     if (tree->left != NULL)
-        if (is_greater(tree->left->info, tree->info)||is_greater(bst_search_max(tree->left)->info, tree->info))
+        if (is_greater(tree->left->info, tree->info) || is_greater(bst_search_max(tree->left)->info, tree->info))
             check = false;
     if (tree->right != NULL)
-        if (!is_greater(tree->right->info, tree->info)||!is_greater(bst_search_min(tree->right)->info, tree->info))
-            check=false;
+        if (!is_greater(tree->right->info, tree->info) || !is_greater(bst_search_min(tree->right)->info, tree->info))
+            check = false;
     return check && is_bst(tree->left) && is_bst(tree->right);
 
-
-
-    /*
-    if (tree->left != NULL||!is_greater(tree->left->info, tree->info))
-        if (tree->right != NULL&&!is_greater(tree->info, tree->right->info))
-            if (!is_greater(bst_search_max(tree->left)->info, tree->info) && !is_greater(tree->info, bst_search_min(tree->right)->info))
-                return is_bst(tree->left) && is_bst(tree->right);*/
-
-
-
-
 }
+
+void bst_visit2d(TBst b) {
+    //funzione di appoggio
+    bst_visit2d_util(b, 0);
+}
+
+void bst_visit2d_util(TBst b, int space) {
+    // Funzione per stampare un bst in due dimensioni
+
+    if (b == NULL)
+        return;
+
+    // Aumenta la distanza tra i livelli
+    space += COUNT;
+
+    // Processa prima il figlio destro
+    bst_visit2d_util(b->right, space);
+
+    // Stampa il nodo corrente
+    puts("");
+    for (int i = COUNT; i < space; i++)
+        printf(" ");
+    printf("%d\n", b->info);
+
+    // Processa il figlio sinistro
+    bst_visit2d_util(b->left, space);
+} 

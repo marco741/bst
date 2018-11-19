@@ -15,7 +15,7 @@
 #define BST_H
 
 #include <stdbool.h>
-
+#define COUNT 10
 typedef int TInfo;
 
 struct SNodeBst {
@@ -37,6 +37,8 @@ TNodeBst* bst_search_max(TBst b);
 TNodeBst* bst_search_min(TBst b);
 void bst_visit(TBst b);
 void bst_visit_contr(TBst b);
+void bst_visit2d(TBst b);
+void bst_visit2d_util(TBst b, int space);
 int conta_nodi(TBst b);
 int somma_valori(TBst b);
 int conta_foglie(TBst b);
