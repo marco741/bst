@@ -8,6 +8,8 @@
 #include <stdlib.h>
 #include "bst.h"
 #include <assert.h>
+#include <math.h>
+#include <limits.h>
 
 bool is_greater(int a, int b) {
     return a>b;
@@ -208,3 +210,38 @@ void info_print2d(TInfo info, int level){
         printf(" ");
     printf("%4d\n", info);
 } 
+
+//INIZIO STAMPA DI CAPUANO
+int bst_depth(TBst tree){
+    if(tree == NULL)
+        return -1;
+    int hl = bst_depth(tree->left);
+    int hr = bst_depth(tree->right);
+    return (hl > hr)?(hl + 1):(hr + 1);
+}
+ 
+ void bst_print1(TBst tree, int o, int* n) {
+    if (tree != NULL) {
+        n[o] = tree->info;
+        bst_print1(tree->left, (o+1)*2-1, n);
+        bst_print1(tree->right, (o+1)*2, n);
+    }
+}
+
+void bst_print(TBst tree) {
+    int d = bst_depth(tree)+1, s = pow(2,d)-1, n[s], i, j, b;
+    for (i = 0; i < s; ++i) // annulla elementi
+        n[i] = INT_MIN;
+    bst_print1(tree, 0, n);
+    for (i = 0; i < d; ++i) { // stampa albero
+        for (j = pow(2,i)-1; j < pow(2,i+1)-1; ++j) {
+            b = (pow(2,(d-i-1))-1)*4;
+            if (n[j] != INT_MIN)
+                printf("%*d%*s", b/2+4, n[j], b/2, "");
+            else
+                printf("%*s", b+4,  "");
+        }
+        printf("\n");
+    }
+}
+//FINE STAMPA DI CAPUANO

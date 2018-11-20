@@ -46,6 +46,9 @@ int conta_foglie(TBst b);
 int conta_nodi_non_foglie(TBst b);
 int bst_numOddOdd(TBst tree);
 bool is_bst(TBst tree);
+int bst_depth(TBst tree);
+void bst_print1(TBst tree, int o, int* n);
+void bst_print(TBst tree);
 
 #endif /* BST_H */
 
