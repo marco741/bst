@@ -1,9 +1,15 @@
 #LIBRERIE CON COMPATIBILITA'
+
+Paragrafo
+
 ##Prova
-''' sh
-git add -A
-git commit
-git status
-git clone
-git push
-'''
+
+Paragrafo
+
+```
+$ git add -A
+$ git commit
+$ git status
+$ git clone
+$ git push
+```
