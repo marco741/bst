@@ -191,7 +191,6 @@ bool is_bst(TBst tree) {
 }
 
 void bst_visit2d(TBst b){
-    //Questa funzione l'ho fatta io e non è male
     //Funzione d'appoggio per chiamare una funzione con un parametro in più
     bst_visit2d_util(b,1);
 }
