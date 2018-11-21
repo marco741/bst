@@ -173,16 +173,21 @@ int bst_numOddOdd(TBst tree) {
 
 bool is_bst(TBst tree) {
     //Dato un albero verificare se è un bst
-    bool check = true;
-    if (tree == NULL || (tree->left == NULL && tree->right == NULL))
+    /*Caso Base*/
+    if (tree == NULL)
         return true;
+    
+    /* Combina */
+    bool check = true;   
     if (tree->left != NULL)
         if (is_greater(bst_search_max(tree->left)->info, tree->info))
             check = false;
     if (tree->right != NULL)
         if (!is_greater(bst_search_min(tree->right)->info, tree->info))
             check = false;
-    return check && is_bst(tree->left) && is_bst(tree->right);
+    
+    /* Impera et combina */
+    return is_bst(tree->left) && is_bst(tree->right) && check;
 }
 
 void bst_visit2d(TBst b){
