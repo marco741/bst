@@ -4,7 +4,6 @@
 
 Per caricare la tua personale versione della libreria e contribuire al suo sviluppo direttamente da NetBeans occorre eseguire i seguenti passaggi:
 
-```
   1 - Aggiorna la tue versione della libreria con git -> remote -> pull...
   2 - Crea un nuovo branch tramite git -> branch/tag -> create branch... ed inserisci un nome che lasci comprendere il senso delle tue modifiche.
   3 - Verificare di aver switchato correttamente al branch appena creato tramite git -> branch/tag -> switch to branch... 
