@@ -36,7 +36,8 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/bst.o \
-	${OBJECTDIR}/bst_it.o
+	${OBJECTDIR}/bst_it.o \
+	${OBJECTDIR}/tinfo.o
 
 
 # C Compiler Flags
@@ -74,6 +75,11 @@ ${OBJECTDIR}/bst_it.o: bst_it.c
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/bst_it.o bst_it.c
+
+${OBJECTDIR}/tinfo.o: tinfo.c
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/tinfo.o tinfo.c
 
 # Subprojects
 .build-subprojects:

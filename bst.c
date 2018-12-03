@@ -11,13 +11,6 @@
 #include <math.h>
 #include <limits.h>
 
-bool is_greater(int a, int b) {
-    return a>b;
-}
-
-void info_print(TInfo info) {
-    printf("%d ", info);
-}
 
 TNodeBst* bst_node_create(TInfo info) {
     TNodeBst* new_node;
@@ -41,7 +34,7 @@ TBst bst_insert(TBst b, TInfo info) {
     if (b == NULL) {
         TNodeBst* new = bst_node_create(info);
         return new;
-    } else if (is_greater(info, b->info)) {
+    } else if (info_greater(info, b->info)) {
         b->right = bst_insert(b->right, info);
         return b;
     } else {
@@ -53,7 +46,7 @@ TBst bst_insert(TBst b, TInfo info) {
 TBst bst_remove(TBst b, TInfo info) {
     if (b == NULL) //Albero vuoto
         return b;
-    if (b->info == info) {
+    if (info_equals(b->info,info)) {
         if (b->left == NULL && b->right == NULL) { //Cancellazione foglia
             bst_node_destroy(b);
             return NULL;
@@ -74,9 +67,9 @@ TBst bst_remove(TBst b, TInfo info) {
         b->right = bst_remove(b->right, info);
         return b;
     }
-    if (is_greater(info, b->info))
+    if (info_greater(info, b->info))
         return bst_remove(b->right, info);
-    if (is_greater(b->info, info))
+    if (info_greater(b->info, info))
         return bst_remove(b->left, info);
 }
 
@@ -129,13 +122,6 @@ int conta_nodi(TBst b) {
         return 1 + conta_nodi(b->left) + conta_nodi(b->right);
 }
 
-int somma_valori(TBst b) {
-    if (b == NULL)
-        return 0;
-    else
-        return b->info + somma_valori(b->left) + somma_valori(b->right);
-}
-
 int conta_foglie(TBst b) {
     if (b == NULL)
         return 0;
@@ -152,25 +138,6 @@ int conta_nodi_non_foglie(TBst b) {
         return 1 + conta_nodi_non_foglie(b->left) + conta_nodi_non_foglie(b->right);
 }
 
-int bst_numOddOdd(TBst tree) {
-    //Conta i nodi di valore dispari e valore dispari
-    if (NULL == tree)
-        return 0;
-    int count = 0;
-    if (tree->left != NULL) {
-        if (tree->left->info % 2)
-            count++;
-        count += bst_numOddOdd(tree->left->left) + bst_numOddOdd(tree->left->right);
-    }
-    if (tree->right != NULL) {
-        if (tree->right->info % 2)
-            count++;
-        count += bst_numOddOdd(tree->right->left) + bst_numOddOdd(tree->right->right);
-    }
-
-    return count;
-}
-
 bool is_bst(TBst tree) {
     //Dato un albero verificare se è un bst
     /*Caso Base*/
@@ -180,10 +147,10 @@ bool is_bst(TBst tree) {
     /* Combina */
     bool check = true;   
     if (tree->left != NULL)
-        if (is_greater(bst_search_max(tree->left)->info, tree->info))
+        if (info_greater(bst_search_max(tree->left)->info, tree->info))
             check = false;
     if (tree->right != NULL)
-        if (!is_greater(bst_search_min(tree->right)->info, tree->info))
+        if (!info_greater(bst_search_min(tree->right)->info, tree->info))
             check = false;
     
     /* Impera et combina */
@@ -216,6 +183,7 @@ void info_print2d(TInfo info, int level){
 } 
 
 //INIZIO STAMPA DI CAPUANO
+/*
 int bst_depth(TBst tree){
     if(tree == NULL)
         return -1;
@@ -248,4 +216,5 @@ void bst_print(TBst tree) {
         printf("\n");
     }
 }
+*/
 //FINE STAMPA DI CAPUANO

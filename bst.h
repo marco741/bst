@@ -13,10 +13,9 @@
 
 #ifndef BST_H
 #define BST_H
-
+#include "tinfo.h"
 #include <stdbool.h>
 #define COUNT 10
-typedef int TInfo;
 
 struct SNodeBst {
 	TInfo info;
@@ -26,9 +25,6 @@ struct SNodeBst {
 
 typedef struct SNodeBst TNodeBst;
 typedef struct SNodeBst* TBst;
-
-bool is_greater(int a, int b);
-void info_print(TInfo info);
 TNodeBst* bst_node_create(TInfo info);
 void bst_node_destroy(TNodeBst* node);
 TBst bst_insert(TBst b, TInfo info);
@@ -41,10 +37,8 @@ void bst_visit2d(TBst b);
 void bst_visit2d_util(TBst b, int level);
 void info_print2d(TInfo info, int level);
 int conta_nodi(TBst b);
-int somma_valori(TBst b);
 int conta_foglie(TBst b);
 int conta_nodi_non_foglie(TBst b);
-int bst_numOddOdd(TBst tree);
 bool is_bst(TBst tree);
 int bst_depth(TBst tree);
 void bst_print1(TBst tree, int o, int* n);
