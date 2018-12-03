@@ -11,7 +11,6 @@
 #include <math.h>
 #include <limits.h>
 
-
 TNodeBst* bst_node_create(TInfo info) {
     TNodeBst* new_node;
     new_node = malloc(sizeof (TNodeBst));
@@ -43,22 +42,35 @@ TBst bst_insert(TBst b, TInfo info) {
     }
 }
 
+TBst bst_search(TBst b, TInfo info) {
+    if (b == NULL)
+        return NULL;
+    if (info_equals(info, b->info))
+        return b;
+    if (info_greater(info, b->info))
+        return bst_search(b->right, info);
+    return bst_search(b->left, info);
+}
+
 TBst bst_remove(TBst b, TInfo info) {
     if (b == NULL) //Albero vuoto
         return b;
-    if (info_equals(b->info,info)) {
+    if (info_equals(b->info, info)) {
         if (b->left == NULL && b->right == NULL) { //Cancellazione foglia
             bst_node_destroy(b);
+            puts("Cancellazione eseguita con successo");
             return NULL;
         }
         if (b->right == NULL) {
             TNodeBst* np = b->left;
             bst_node_destroy(b);
+            puts("Cancellazione eseguita con successo");
             return np;
         }
         if (b->left == NULL) {
             TBst np = b->right;
             bst_node_destroy(b);
+            puts("Cancellazione eseguita con successo");
             return np;
         }
         //left & right != NULL + ToBeRemovedRoot case
@@ -143,44 +155,44 @@ bool is_bst(TBst tree) {
     /*Caso Base*/
     if (tree == NULL)
         return true;
-    
+
     /* Combina */
-    bool check = true;   
+    bool check = true;
     if (tree->left != NULL)
         if (info_greater(bst_search_max(tree->left)->info, tree->info))
             check = false;
     if (tree->right != NULL)
         if (!info_greater(bst_search_min(tree->right)->info, tree->info))
             check = false;
-    
+
     /* Impera et combina */
     return is_bst(tree->left) && is_bst(tree->right) && check;
 }
 
-void bst_visit2d(TBst b){
+void bst_visit2d(TBst b) {
     //Funzione d'appoggio per chiamare una funzione con un parametro in più
-    bst_visit2d_util(b,1);
+    bst_visit2d_util(b, 1);
 }
 
-void bst_visit2d_util(TBst b,int level) {
+void bst_visit2d_util(TBst b, int level) {
     //Funzione per stampare un bst in due dimensioni
     //In pratica è la copia di bst_visit_contr, ma con due parametri
     if (b != NULL) {
         //Processo prima il figlio destro in modo da stampare il tutto in verticale, da sinistra verso destra
-        bst_visit2d_util(b->right,level+1);
-        info_print2d(b->info,level);
-        bst_visit2d_util(b->left,level+1);
+        bst_visit2d_util(b->right, level + 1);
+        info_print2d(b->info, level);
+        bst_visit2d_util(b->left, level + 1);
     }
 }
 
-void info_print2d(TInfo info, int level){
+void info_print2d(TInfo info, int level) {
     //Stampa il nodo corrente a distanza level*COUNT dal bordo sinistro
     //dopo e prima di una riga vuota.
     puts("");
-    for (int i = COUNT; i < level*COUNT; i++)//ATTENZIONE vedi costante COUNT nell'header. Predefinito 10.
+    for (int i = COUNT; i < level * COUNT; i++)//ATTENZIONE vedi costante COUNT nell'header. Predefinito 10.
         printf(" ");
     printf("%4d\n", info);
-} 
+}
 
 //INIZIO STAMPA DI CAPUANO
 /*
@@ -216,5 +228,5 @@ void bst_print(TBst tree) {
         printf("\n");
     }
 }
-*/
+ */
 //FINE STAMPA DI CAPUANO
