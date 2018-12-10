@@ -6,6 +6,7 @@
                    projectFiles="true">
       <itemPath>bst.h</itemPath>
       <itemPath>bst_it.h</itemPath>
+      <itemPath>list.h</itemPath>
       <itemPath>tinfo.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
@@ -17,6 +18,7 @@
                    projectFiles="true">
       <itemPath>bst.c</itemPath>
       <itemPath>bst_it.c</itemPath>
+      <itemPath>list.c</itemPath>
       <itemPath>tinfo.c</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -50,6 +52,10 @@
       <item path="bst_it.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="bst_it.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="list.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="list.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="tinfo.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -85,6 +91,10 @@
       <item path="bst_it.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="bst_it.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="list.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="list.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="tinfo.c" ex="false" tool="0" flavor2="0">
       </item>
