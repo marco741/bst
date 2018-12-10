@@ -11,7 +11,7 @@
 #include <math.h>
 #include <limits.h>
 
-TBst bst_create() {
+TBst bst_create(){
     return NULL;
 }
 
@@ -78,19 +78,17 @@ TBst bst_remove(TBst b, TInfo info) {
             return np;
         }
         //left & right != NULL + ToBeRemovedRoot case
-        TNodeBst* max_dx = bst_search_max(b->left);
-        b->info = max_dx->info;
-        b->right = bst_remove(b->right, info);
+        TNodeBst* max_sx = bst_search_max(b->left);
+        b->info = max_sx->info;
+        b->left = bst_remove(b->left, b->info);
         return b;
     }
-    if (info_greater(info, b->info)) {
-        b->right = bst_remove(b->right, info);
-        return b;
-    }
-    if (info_greater(b->info, info)) {
-        b->left = bst_remove(b->left, info);
-        return b;
-    }
+    if (info_greater(info, b->info)){
+        b->right=bst_remove(b->right, info);
+    return b;}
+    if (info_greater(b->info, info)){
+        b->left=bst_remove(b->left, info);
+    return b;}
 }
 
 /*
