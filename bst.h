@@ -25,6 +25,7 @@ struct SNodeBst {
 
 typedef struct SNodeBst TNodeBst;
 typedef struct SNodeBst* TBst;
+TBst bst_create();
 TNodeBst* bst_node_create(TInfo info);
 void bst_node_destroy(TNodeBst* node);
 TBst bst_insert(TBst b, TInfo info);

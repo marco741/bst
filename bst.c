@@ -11,6 +11,10 @@
 #include <math.h>
 #include <limits.h>
 
+TBst bst_create(){
+    return NULL;
+}
+
 TNodeBst* bst_node_create(TInfo info) {
     TNodeBst* new_node;
     new_node = malloc(sizeof (TNodeBst));
