@@ -11,7 +11,7 @@
 #include <math.h>
 #include <limits.h>
 
-TBst bst_create(){
+TBst bst_create() {
     return NULL;
 }
 
@@ -62,19 +62,19 @@ TBst bst_remove(TBst b, TInfo info) {
     if (info_equal(b->info, info)) {
         if (b->left == NULL && b->right == NULL) { //Cancellazione foglia
             bst_node_destroy(b);
-            puts("Cancellazione eseguita con successo");
+            //puts("Cancellazione eseguita con successo");
             return NULL;
         }
         if (b->right == NULL) {
             TNodeBst* np = b->left;
             bst_node_destroy(b);
-            puts("Cancellazione eseguita con successo");
+            //puts("Cancellazione eseguita con successo");
             return np;
         }
         if (b->left == NULL) {
             TBst np = b->right;
             bst_node_destroy(b);
-            puts("Cancellazione eseguita con successo");
+            //puts("Cancellazione eseguita con successo");
             return np;
         }
         //left & right != NULL + ToBeRemovedRoot case
@@ -83,10 +83,14 @@ TBst bst_remove(TBst b, TInfo info) {
         b->right = bst_remove(b->right, info);
         return b;
     }
-    if (info_greater(info, b->info))
-        return bst_remove(b->right, info);
-    if (info_greater(b->info, info))
-        return bst_remove(b->left, info);
+    if (info_greater(info, b->info)) {
+        b->right = bst_remove(b->right, info);
+        return b;
+    }
+    if (info_greater(b->info, info)) {
+        b->left = bst_remove(b->left, info);
+        return b;
+    }
 }
 
 /*
