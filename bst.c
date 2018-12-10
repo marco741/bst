@@ -45,7 +45,7 @@ TBst bst_insert(TBst b, TInfo info) {
 TBst bst_search(TBst b, TInfo info) {
     if (b == NULL)
         return NULL;
-    if (info_equals(info, b->info))
+    if (info_equal(info, b->info))
         return b;
     if (info_greater(info, b->info))
         return bst_search(b->right, info);
@@ -55,7 +55,7 @@ TBst bst_search(TBst b, TInfo info) {
 TBst bst_remove(TBst b, TInfo info) {
     if (b == NULL) //Albero vuoto
         return b;
-    if (info_equals(b->info, info)) {
+    if (info_equal(b->info, info)) {
         if (b->left == NULL && b->right == NULL) { //Cancellazione foglia
             bst_node_destroy(b);
             puts("Cancellazione eseguita con successo");
