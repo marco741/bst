@@ -11,16 +11,19 @@
 #include <math.h>
 #include <limits.h>
 
-TBst bst_create(){
+TBst bst_create()
+{
     return NULL;
 }
 
-TNodeBst* bst_node_create(TInfo info) {
-    TNodeBst* new_node;
-    new_node = malloc(sizeof (TNodeBst));
+TNodeBst *bst_node_create(TInfo info)
+{
+    TNodeBst *new_node;
+    new_node = malloc(sizeof(TNodeBst));
     if (new_node == NULL)
         return NULL;
-    else {
+    else
+    {
         new_node->info = info;
         new_node->left = NULL;
         new_node->right = NULL;
@@ -28,25 +31,33 @@ TNodeBst* bst_node_create(TInfo info) {
     }
 }
 
-void bst_node_destroy(TNodeBst* node) {
+void bst_node_destroy(TNodeBst *node)
+{
     free(node);
     node = NULL;
 }
 
-TBst bst_insert(TBst b, TInfo info) {
-    if (b == NULL) {
-        TNodeBst* new = bst_node_create(info);
+TBst bst_insert(TBst b, TInfo info)
+{
+    if (b == NULL)
+    {
+        TNodeBst *new = bst_node_create(info);
         return new;
-    } else if (info_greater(info, b->info)) {
+    }
+    else if (info_greater(info, b->info))
+    {
         b->right = bst_insert(b->right, info);
         return b;
-    } else {
+    }
+    else
+    {
         b->left = bst_insert(b->left, info);
         return b;
     }
 }
 
-TBst bst_search(TBst b, TInfo info) {
+TBst bst_search(TBst b, TInfo info)
+{
     if (b == NULL)
         return NULL;
     if (info_equal(info, b->info))
@@ -56,39 +67,49 @@ TBst bst_search(TBst b, TInfo info) {
     return bst_search(b->left, info);
 }
 
-TBst bst_remove(TBst b, TInfo info) {
+TBst bst_remove(TBst b, TInfo info)
+{
     if (b == NULL) //Albero vuoto
         return b;
-    if (info_equal(b->info, info)) {
-        if (b->left == NULL && b->right == NULL) { //Cancellazione foglia
+    if (info_equal(b->info, info))
+    {
+        if (b->left == NULL && b->right == NULL)
+        { //Cancellazione foglia
             bst_node_destroy(b);
             //puts("Cancellazione eseguita con successo");
             return NULL;
         }
-        if (b->right == NULL) {
-            TNodeBst* np = b->left;
+        if (b->right == NULL)
+        {
+            TNodeBst *np = b->left;
             bst_node_destroy(b);
             //puts("Cancellazione eseguita con successo");
             return np;
         }
-        if (b->left == NULL) {
+        if (b->left == NULL)
+        {
             TBst np = b->right;
             bst_node_destroy(b);
             //puts("Cancellazione eseguita con successo");
             return np;
         }
         //left & right != NULL + ToBeRemovedRoot case
-        TNodeBst* max_sx = bst_search_max(b->left);
+        TNodeBst *max_sx = bst_search_max(b->left);
         b->info = max_sx->info;
         b->left = bst_remove(b->left, b->info);
         return b;
     }
-    if (info_greater(info, b->info)){
-        b->right=bst_remove(b->right, info);
-    return b;}
-    if (info_greater(b->info, info)){
-        b->left=bst_remove(b->left, info);
-    return b;}
+    if (info_greater(info, b->info))
+    {
+        b->right = bst_remove(b->right, info);
+        return b;
+    }
+    if (info_greater(b->info, info))
+    {
+        b->left = bst_remove(b->left, info);
+        return b;
+    }
+    return b;
 }
 
 /*
@@ -105,42 +126,50 @@ TBst bst_remove(TBst b, TInfo info) {
             }
 }
  */
-TNodeBst* bst_search_max(TBst b) {
+TNodeBst *bst_search_max(TBst b)
+{
     if (b == NULL || b->right == NULL)
         return b;
     return bst_search_max(b->right);
 }
 
-TNodeBst* bst_search_min(TBst b) {
+TNodeBst *bst_search_min(TBst b)
+{
     if (b == NULL || b->left == NULL)
         return b;
     return bst_search_min(b->left);
 }
 
-void bst_visit(TBst b) {
-    if (b != NULL) {
+void bst_visit(TBst b)
+{
+    if (b != NULL)
+    {
         bst_visit(b->left);
         info_print(b->info);
         bst_visit(b->right);
     }
 }
 
-void bst_visit_contr(TBst b) {
-    if (b != NULL) {
+void bst_visit_contr(TBst b)
+{
+    if (b != NULL)
+    {
         bst_visit_contr(b->right);
         info_print(b->info);
         bst_visit_contr(b->left);
     }
 }
 
-int conta_nodi(TBst b) {
+int conta_nodi(TBst b)
+{
     if (b == NULL)
         return 0;
     else
         return 1 + conta_nodi(b->left) + conta_nodi(b->right);
 }
 
-int conta_foglie(TBst b) {
+int conta_foglie(TBst b)
+{
     if (b == NULL)
         return 0;
     else if (b->left == NULL && b->right == NULL)
@@ -149,14 +178,16 @@ int conta_foglie(TBst b) {
         return conta_foglie(b->left) + conta_foglie(b->right);
 }
 
-int conta_nodi_non_foglie(TBst b) {
+int conta_nodi_non_foglie(TBst b)
+{
     if (b == NULL || (b->left == NULL && b->right == NULL))
         return 0;
     else
         return 1 + conta_nodi_non_foglie(b->left) + conta_nodi_non_foglie(b->right);
 }
 
-bool is_bst(TBst tree) {
+bool is_bst(TBst tree)
+{
     //Dato un albero verificare se è un bst
     /*Caso Base*/
     if (tree == NULL)
@@ -174,7 +205,7 @@ bool is_bst(TBst tree) {
     /* Impera et combina */
     return is_bst(tree->left) && is_bst(tree->right) && check;
 }
-
+/*
 void bst_visit2d(TBst b) {
     //Funzione d'appoggio per chiamare una funzione con un parametro in più
     bst_visit2d_util(b, 1);
@@ -189,8 +220,8 @@ void bst_visit2d_util(TBst b, int level) {
         info_print2d(b->info, level);
         bst_visit2d_util(b->left, level + 1);
     }
-}
-
+}*/
+/*
 void info_print2d(TInfo info, int level) {
     //Stampa il nodo corrente a distanza level*COUNT dal bordo sinistro
     //dopo e prima di una riga vuota.
@@ -198,7 +229,7 @@ void info_print2d(TInfo info, int level) {
     for (int i = COUNT; i < level * COUNT; i++)//ATTENZIONE vedi costante COUNT nell'header. Predefinito 10.
         printf(" ");
     printf("%4d\n", info);
-}
+}*/
 
 //INIZIO STAMPA DI CAPUANO
 /*

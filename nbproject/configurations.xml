@@ -5,7 +5,6 @@
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>bst.h</itemPath>
-      <itemPath>bst_it.h</itemPath>
       <itemPath>list.h</itemPath>
       <itemPath>tinfo.h</itemPath>
     </logicalFolder>
@@ -17,7 +16,6 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>bst.c</itemPath>
-      <itemPath>bst_it.c</itemPath>
       <itemPath>list.c</itemPath>
       <itemPath>tinfo.c</itemPath>
     </logicalFolder>
@@ -48,10 +46,6 @@
       <item path="bst.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="bst.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="bst_it.c" ex="false" tool="0" flavor2="0">
-      </item>
-      <item path="bst_it.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="list.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -87,10 +81,6 @@
       <item path="bst.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="bst.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="bst_it.c" ex="false" tool="0" flavor2="0">
-      </item>
-      <item path="bst_it.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="list.c" ex="false" tool="0" flavor2="0">
       </item>
